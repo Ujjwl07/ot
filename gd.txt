@@ -1,0 +1,35 @@
+clc;
+clear;
+
+% Min f(x1, x2) = x1^2 + x2^2 + x1*x2
+% Starting point: x0 = (2, 2)
+% Learning rate alpha = 0.1
+
+x = [2; 2];
+alpha = 0.1;
+tol = 1e-5;
+max_iter = 1000;
+
+for k = 1:max_iter
+
+    % Gradient
+    grad = [2*x(1) + x(2);
+            2*x(2) + x(1)];
+
+    % Update
+    x_new = x - alpha * grad;
+
+    if norm(x_new - x) < tol
+        break;
+    end
+
+    x = x_new;
+end
+
+disp('Optimal point:');
+disp(x);
+
+fval = x(1)^2 + x(2)^2 + x(1)*x(2);
+
+disp('Minimum value:');
+disp(fval);
